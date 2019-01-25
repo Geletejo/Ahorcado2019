@@ -6,6 +6,7 @@
 package codigo;
 
 import java.awt.Image;
+import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -24,6 +25,7 @@ public class VentanaAhorcado extends javax.swing.JFrame {
      */
     public VentanaAhorcado() {
         initComponents();
+        palabraOculta = eligePalabra();
         //Display para que haya tantos guiones bajos y espacios como la palabra oculta.
         String aux = "";
         for (int i=0; i<palabraOculta.length(); i++){
@@ -34,9 +36,9 @@ public class VentanaAhorcado extends javax.swing.JFrame {
     }
 
     
-  private void chequeaBoton(JButton boton){
-    boton.setEnabled(false);
-    chequeaLetra(boton.getText());
+   private void chequeaBoton(JButton boton){
+        boton.setEnabled(false);
+        chequeaLetra(boton.getText());
 }
     
     private void chequeaLetra(String letra){
@@ -93,7 +95,16 @@ public class VentanaAhorcado extends javax.swing.JFrame {
             
     }
     
-    
+   private String eligePalabra(){
+       //Este metodo eligira una palabra al azar deuna lista de palabara
+       //la lista de palabras se va a guardar en un array
+       
+       String [] listaPalabras = {"HOLA", "ADIOS", "NONOSVAMOS", "ODIOELLOL", "ELLOLESDROGA"};
+            //Se declara una variable aleatoria
+       Random aleatorio = new Random();
+       int posicion = aleatorio.nextInt(listaPalabras.length);
+       return listaPalabras[posicion];
+   }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
