@@ -5,6 +5,7 @@
  */
 package codigo;
 
+import java.awt.Component;
 import java.awt.Image;
 import java.util.Random;
 import javax.swing.ImageIcon;
@@ -69,6 +70,7 @@ public class VentanaAhorcado extends javax.swing.JFrame {
             dibujaImagen(numeroDeFallos);
             if(numeroDeFallos >= 6){
                 partidaTerminada = true;
+                deshabilitaTodosLosBotones();
                 
             }
         }
@@ -76,6 +78,7 @@ public class VentanaAhorcado extends javax.swing.JFrame {
         if (!palabraConGuiones.contains("_")){
             dibujaImagen(-1);
             partidaTerminada = true;
+            deshabilitaTodosLosBotones();
         }
         
     }
@@ -112,9 +115,19 @@ public class VentanaAhorcado extends javax.swing.JFrame {
             //Se declara una variable aleatoria
        Random aleatorio = new Random();
        int posicion = aleatorio.nextInt(listaPalabras.length);
-       return listaPalabras[posicion];
+       return listaPalabras[posicion].toUpperCase();
    }
     
+   private void deshabilitaTodosLosBotones(){
+       Component[] componentes = getContentPane().getComponents();
+       for (int i=0; i<componentes.length;i++){
+           if(componentes[i] instanceof JButton){
+               componentes[i].setEnabled(false);
+           }
+       }
+   }
+   
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
