@@ -18,6 +18,8 @@ public class VentanaAhorcado extends javax.swing.JFrame {
 
     String palabraOculta = "CETYS";
     int numeroDeFallos = 0;
+    //variable que indica si la partida ha terminado
+    boolean partidaTerminada = false;
     
     
     /**
@@ -37,8 +39,10 @@ public class VentanaAhorcado extends javax.swing.JFrame {
 
     
    private void chequeaBoton(JButton boton){
+      if(!partidaTerminada){ 
         boton.setEnabled(false);
         chequeaLetra(boton.getText());
+      }
 }
     
     private void chequeaLetra(String letra){
@@ -63,10 +67,15 @@ public class VentanaAhorcado extends javax.swing.JFrame {
         if(!acierto){
             numeroDeFallos++;
             dibujaImagen(numeroDeFallos);
+            if(numeroDeFallos >= 6){
+                partidaTerminada = true;
+                
+            }
         }
         //Si se cumple es que ya no hay guiones y he ganado.
         if (!palabraConGuiones.contains("_")){
             dibujaImagen(-1);
+            partidaTerminada = true;
         }
         
     }
